@@ -1,3 +1,9 @@
+// tmp1 := 10	// Int
+// tmp2 := 11.3	// float
+// делать операции с переменными разного типа нельзя, поэтому преобразуем
+// var sumFloat float64 = float64(tmp1) + tmp2
+// var sumInt int = tmp1 + int(tmp2)
+
 package main
 
 import (
