@@ -60,3 +60,18 @@ fmt.Println(ok) // => "false"
 // или 
 value, ok := counters["a"]
 fmt.Println(value, ok) // => "3 true"
+//------------------------------------------------------------------------------------------
+Удаление пар «ключ/значение» функцией «delete»
+// Передайте функции delete два аргумента: карту, из которой удаляется ключ, и удаляемый ключ.
+// Ключ вместе с соответствующим значением удаляется из карты.
+var ok bool
+ranks := make(map[string]int)
+ranks["bronze"] = 3
+ranks["gold"] = 5
+// fmt.Println(ranks) => map[bronze:3 gold:5]
+rank, ok = ranks["bronze"]
+fmt.Printf("rank: %d, ok: %v\n", rank, ok) // => rank: 3, ok: true
+delete(ranks, "bronze") // Удаляем ключ «bronze» с соответствующим значением.
+// fmt.Println(ranks) => map[gold:5]
+rank, ok = ranks["bronze"] //«ok» содержит false, потому что значение было удалено.
+fmt.Printf("rank: %d, ok: %v\n", rank, ok) // => rank: 0, ok: false
