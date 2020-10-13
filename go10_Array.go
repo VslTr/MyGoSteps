@@ -121,3 +121,24 @@ a = a[:len(a)-1]
 copy(a[i:], a[i+1:])
 
 fmt.Println(a) // [A B E D]
+//----------------------------------------------------------------------------------------------
+
+Сортировка
+// https://разработка-программ.рф/заметки/алгоритмы-сортировки-на-go/
+
+Есть встроенная функция "sort" (например "sort.Ints", "sort.Float64s", "sort.Strings")
+// https://golang-blog.blogspot.com/2020/05/sort-in-golang.html
+// https://golang.org/pkg/sort/
+
+import (
+	"fmt"
+	"sort"
+)
+
+func main() {
+	arr := []string{"cobra", "xDrin", "Abcent", "bingo"}
+	sort.Strings(arr) // Отсортирует по алфавиту
+	fmt.Println(arr) // => Abcent bingo cobra xDrin
+
+	sort.Sort(sort.Reverse(sort.StringSlice(arr))) // в обратном порядке https://golang.org/pkg/sort/#Reverse
+	fmt.Println(arr) // => xDrin cobra bingo Abcent
