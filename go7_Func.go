@@ -56,6 +56,11 @@ number := 33
 numbers := []int{32.34, 24.78, 89.00}
 fmt.Printf("некий текст: %0.2f\n", myFunc(number, numbers...))
 */
+Аргументом может быть карта, срез или массив
+func test(m map[string]int, tst string) bool {
+	// Здесь функция ожидает принять карту "m" и строку в переменную "tst",
+	// а вернуть должна значение типа "bool" - true или false
+}
 
 package main
 
