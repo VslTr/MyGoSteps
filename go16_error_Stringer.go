@@ -54,3 +54,47 @@ func main() {
 	}
 }
 // Out => Overheating by 21.38 degrees!
+---------------------------------------------------------------------------
+интерфейс Stringer
+При помощи этого интерфейса любой тип может отображаться при выводе.
+Тоесть любой тип легко подготовить для поддержки Stringer,
+достаточно определить метод String(), который возвращает строку.
+// Определение интерфейса выглядит так
+type Stringer interface {
+	String() string
+}
+/*
+Перейдем к примеру более серьезного использования типа интерфейса.
+Сделаем так, чтобы наши типы Gallons, Liters и Milliliters поддерживали Stringer.
+Мы переместим свой код форматирования этих значенийв методы String, связанные с каждым типом.
+Вместо Printf метод будет вызывать функцию Sprintf и возвращать полученное значение.
+ */
+package main
+
+import "fmt"
+
+type  Gallons float64
+func (g Gallons) String() string {
+	return fmt.Sprintf("%0.2f gal", g)
+}
+
+type Liters float64
+func (l Liters) String() string {
+	return fmt.Sprintf("%0.2f L", l)
+}
+
+type Milliliters float64
+func (m Milliliters) String() string {
+	return fmt.Sprintf("%0.2f mL", m)
+}
+
+func main()  {
+	fmt.Println(Gallons(12.09248342))
+	fmt.Println(Liters(12.09248342))
+	fmt.Println(Milliliters(12.09248342))
+}
+//output:
+//		12.09 gal
+//		12.09 L
+//		12.09 mL
+
