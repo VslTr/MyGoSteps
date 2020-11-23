@@ -1,3 +1,8 @@
+/* Ключевое слово defer гарантирует, что вызов функции
+будет выполнен даже в том случае, если вызывающая функция
+завершится преждевременно — например, из-за ключевого слова return. */
+
+
 package main
 
 import (
@@ -24,6 +29,10 @@ func  GetFloats(fileName string) ([]float64, error)  {
 	if err != nil {
 		return nil, err
 	}
+	// "defer" нужен чтобы ф-ия не выполнялась до выхода из "GetFloats"
+	// даже если далле будет получена ошибка и выполнение прервется
+	// благодаре "defer" "CloseFile()" все ровно будет вызванна.
+	defer CloseFile(file) // Вместо прямого вызова file.Close, вызывается CloseFil()
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		// в переменную "number" помещаем отсканированную и сконвертированную в float64 строку.
@@ -33,7 +42,7 @@ func  GetFloats(fileName string) ([]float64, error)  {
 		}
 		numbers = append(numbers, number) // добавляем число из переменной "namber" в слайс
 	}
-	CloseFile(file) // Вместо прямого вызова file.Close, вызывается CloseFil()
+
 	if scanner.Err() != nil {
 		return nil, scanner.Err()
 	}
